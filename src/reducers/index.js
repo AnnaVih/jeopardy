@@ -1,12 +1,24 @@
-import { SET_CATEGORIES } from '../actions/index';
+import { combineReducers } from 'redux';
 
-function categories(state=[], actions) {
-    switch(actions.type){
+import { SET_CATEGORIES, PICK_CATEGORY } from '../actions';
+
+function categories(state=[], action) {
+    switch(action.type){
         case SET_CATEGORIES:
-        return actions.categories;
+        return action.categories;
         default:
         return state
     }
 }
 
-export default categories;
+
+function category(state={}, action) {
+    switch(action.type){
+        case PICK_CATEGORY:
+            return action.category
+        default:
+            return state
+    }
+}
+
+export default combineReducers({categories, category});
